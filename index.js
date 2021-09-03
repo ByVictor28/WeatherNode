@@ -23,13 +23,14 @@ app.get("/city", async (req,res) => {
         // console.log(response.data);
 
         
-        const weekWeather = response.data.daily.map(day => {
-            
-            return {
-                date:new Date(day.dt * 1000).toLocaleDateString("en-US", options),
-                icon:day.weather[0].icon,
-                top:day.temp.min,
-                buttom:day.temp.max
+        const weekWeather = response.data.daily.map((day,index) => {
+            if (index < 5) {
+                return {
+                    date:new Date(day.dt * 1000).toLocaleDateString("en-US", options),
+                    icon:day.weather[0].icon,
+                    top:day.temp.min,
+                    buttom:day.temp.max
+                }
             }
         });
 
